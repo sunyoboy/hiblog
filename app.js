@@ -58,3 +58,8 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+/*设置监听端口,同时设置回调函数，监听到事件时执行回调函数*/
+app.listen(80, function afterListen(){
+        console.log('express running on the http://localhost:80');
+});
