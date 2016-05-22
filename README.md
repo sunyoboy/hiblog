@@ -1,2 +1,1 @@
-# hiblog
-My Blog
+npm install -g bower
