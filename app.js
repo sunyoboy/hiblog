@@ -4,13 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var config = require('./config');
+
+// added by sunlj
 var upload = require('./libs/upload');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var flash = require('connect-flash');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
+app.set('port', process.env.PORT || 3000);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -22,9 +28,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
 
-app.use('/', routes);
-app.use('/users', users);
+// save session in mongodb
+app.use(session({
+  secret: config.cookieSecret,
+  key: config.db, // cookie name
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days 
+  },
+  store: new MongoStore({
+    url: 'mongodb://localhost/blog'
+    // db: config.db,
+    // host: config.host,
+    // port: config.port
+  });
+}));
+
+routes(app);
+
 upload.upload(app);
 
 // catch 404 and forward to error handler
@@ -62,6 +84,6 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 /*设置监听端口,同时设置回调函数，监听到事件时执行回调函数*/
-app.listen(80, function afterListen(){
-        console.log('express running on the http://localhost:80');
+app.listen(app.get('port'), function afterListen(){
+        console.log('express running on the http://localhost:' + app.get('port'));
 });
