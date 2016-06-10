@@ -42,7 +42,7 @@ app.use(session({
     // db: config.db,
     // host: config.host,
     // port: config.port
-  });
+  })
 }));
 
 routes(app);
@@ -80,7 +80,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
+// 导出app实例供其他模块调用。
 module.exports = app;
 
 /*设置监听端口,同时设置回调函数，监听到事件时执行回调函数*/

@@ -1,4 +1,7 @@
 
+var post = require('../models/post');
+var user = require('../models/user');
+
 module.exports = function(app) {
 /* GET home page. */
 app.get('/', function(req, res, next) {
@@ -24,5 +27,21 @@ app.get('/discuss', function(req, res, next) {
 app.get('/resources', function(req, res, next) {
   res.render('resources', { title: 'resources' });
 });
+
+app.get('/post', function(req, res, next) {
+  res.render('post', { title: 'resources' });
+});
+
+
+app.post('/post', post.postArticle);
+
+app.get('/demo', post.display);
+
+app.get('/login', function(req, res, next) {
+  res.render('login', { title: 'current' });
+});
+
+app.get('/u/:name', user.getAll);
+app.get('/u/:name/:day/:title', user.findOne);
 
 }

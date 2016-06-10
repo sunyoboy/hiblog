@@ -18,7 +18,7 @@ exports.upload = function (app) {
 
 	app.post('/upload', upload.array('field1', 5), function (req, res) {
 	  req.flash('success', '文件上传成功!');
-	  res.redirect('/upload');
+	  res.redirect('/');
 	});
 
 	app.post('/profile', upload.single('avatar'), function (req, res, next) {
