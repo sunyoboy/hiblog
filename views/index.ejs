@@ -31,7 +31,23 @@
 
                 <hr>
 
-                <!-- Post Content -->
+              <% posts.forEach(function(article, index) { %>
+                  <div class="jumbotron">  
+                    <h2><%= article.title %></h2>
+                  </div>
+                  <p>作者：<a href="/u/<%= article.username%>"><%= article.username %></a></p>
+                  <p>日期：<%= article.date %></p>
+                  <%- article.body %>
+                  <br>
+                  <hr>
+              <% }) %>
+                <div class="pagination-centered">
+                  <ul class="pagination ">
+                      <li><a class="previous disabled" href="#">Previous</a></li>
+                      <li><a href="#">Next</a></li>
+                  </ul>
+                </div>
+                <!-- Post Content 
                 <p class="lead"><h3>徘徊,知识与技巧的积累在缓慢的叠加</h3></p>
                 
                 <p>迟缓的脚步在往前挪动。</p>
@@ -39,8 +55,7 @@
                 <p>目光被沿途的风景迷惑；</p>
 
                 <p>到底有多远，我才能迎来更美的风景！</p>
-
-                <h1><%= title %></h1>
+                -->
                 
                 <hr>
 

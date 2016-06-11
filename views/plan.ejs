@@ -44,18 +44,99 @@
                 
                 <hr>
 
-                <% include links %>
-                <!-- page -->
-                <script src="/javascripts/page.js"></script>            
-                <div class="page">
-                  <% if (!isFirstPage) { %>
-                    <span class="prepage"><a title="上一页" href="?p=<%= page-1 %>">上一页</a></span>
-                  <% } %>
-
-                  <% if (!isLastPage) { %>
-                    <span class="nextpage"><a title="下一页" href="?p=<%= page+1 %>">下一页</a></span>
-                  <% } %>
+                <div class="bs-example" data-example-id="simple-dl">
+                    <dl>
+                      <dt>Description lists</dt>
+                      <dd>A description list is perfect for defining terms.</dd>
+                      <dt>Euismod</dt>
+                      <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                      <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                      <dt>Malesuada porta</dt>
+                      <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                    </dl>
                 </div>
+
+                <div class="bs-example" data-example-id="simple-dl">                  
+                    <dl class="dl-horizontal">
+                      <dt>MongoDB </dt>
+                      <dd>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。</dd>
+                      <dt>Mysql</dt>
+                      <dd>Mysql是最流行的关系型数据库管理系统，在WEB应用方面MySQL是最好的RDBMS(Relational Database Management System：关系数据库管理系统)应用软件之一。</dd>
+                      <dt>Bootstrap</dt>
+                      <dd>Bootstrap，来自 Twitter，是目前最受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。</dd>
+                    </dl>
+                </div>
+
+                <table class="table table-striped">
+                    <tr>
+                      <th>abc</th>
+                      <th>abc</th>
+                      <th>abc</th>
+                      <th>abc</th>
+                      <th>abc</th>
+                      <th>abc</th>                      
+                    </tr>
+                    <tr>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>                                                    
+                    </tr>
+                    <tr>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>                                                    
+                    </tr>
+                    <tr>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>                                                    
+                    </tr>                                                 
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                      <th>abc</th>
+                      <th>abc</th>
+                      <th>abc</th>
+                      <th>abc</th>
+                      <th>abc</th>
+                      <th>abc</th>                      
+                    </tr>
+                    <tr>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>                                                    
+                    </tr>
+                    <tr>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>                                                    
+                    </tr>
+                    <tr>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>
+                      <td>def</td>                                                    
+                    </tr>                                                 
+                </table>
+
                 <hr>
                 <!-- include comment -->
 

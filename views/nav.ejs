@@ -17,6 +17,8 @@
     <!-- Custom CSS -->
     <link href="/startbootstrap-blog-post-1.0.4/css/blog-post.css" rel="stylesheet">
 
+    <link href="/stylesheets/style.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,7 +60,12 @@
                     </li>                                        
                     <li>
                         <a href="/resources">Resources</a>
-                    </li>              
+                    </li>
+                    <% if (user) { %>
+                    <li>
+                        <a href="/post">Blog</a>
+                    </li>                        
+                    <% } %>
                 </ul>
             </div>
 <!-- 

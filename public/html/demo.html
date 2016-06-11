@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>菜鸟教程(runoob.com)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/libs/bootstrap/dist/css/bootstrap.min.css" />
+  <style type="text/css">
+  .pagination-centered {
+    text-align: center;
+  }
+  
+  .pagination-right {
+    text-align: right;
+  }
+  </style>
+</head>
+
+<body>
+  <% posts.forEach(function(article, index) { %>
+    <div class="container">
+      <p>
+        <h2><%= article.title %></h2></p>
+      <p>日期：
+        <%= article.date %>
+      </p>
+      <p>
+        <%- article.body %>
+      </p>
+    </div>
+    
+    <%}) %>
+      <div class="pagination-centered">
+        <ul class="pagination pagination-lg ">
+          <li>
+            <a href="#">上一页</a>
+          </li>
+          <li>
+            <a href="#">1</a>
+          </li>
+          <li>
+            <a href="#">2</a>
+          </li>
+          <li>
+            <a href="#">3</a>
+          </li>
+          <li>
+            <a href="#">4</a>
+          </li>
+          <li>
+            <a href="#">5</a>
+          </li>
+          <li>
+            <a href="#">下一页</a>
+          </li>
+        </ul>
+      </div>
+      <!-- jQuery -->
+      <script src="/libs/jquery/dist/jquery.min.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
