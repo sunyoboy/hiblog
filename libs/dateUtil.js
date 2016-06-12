@@ -22,3 +22,18 @@ Date.prototype.Format = function(fmt)
   fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length))); 
   return fmt; 
 }
+
+exports.getDateTime = function() {
+  var date = new Date();
+  //存储各种时间格式，方便以后扩展
+  var time = {
+    date: date,
+    year: date.Format("yyyy"),
+    month: date.Format("yyyy-MM"),
+    day: date.Format("yyyy-MM-dd"),
+    minute: date.Format("yyyy-MM-dd hh:mm:ss")
+      // minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
+      //   date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+  }
+  return time;  
+}

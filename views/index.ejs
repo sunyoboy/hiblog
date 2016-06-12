@@ -32,14 +32,63 @@
                 <hr>
 
               <% posts.forEach(function(article, index) { %>
+              
                   <div class="jumbotron">  
-                    <h2><%= article.title %></h2>
+                    <h2><a href="/u/<%= article.username %>/<%= article.date.day %>/<%= article.title %>"><%= article.title %></a></h2>
                   </div>
-                  <p>作者：<a href="/u/<%= article.username%>"><%= article.username %></a></p>
-                  <p>日期：<%= article.date %></p>
+                  <p>
+                  <% if (user && user.username == article.username) { %>
+                    <span><a class="edit" href="/edit/<%= article.username %>/<%= article.date.day %>/<%= article.title %>">编辑</a></span>
+                    <span><a class="edit" href="/remove/<%= article.username %>/<%= article.date.day %>/<%= article.title %>">删除</a></span>                  
+                  <% } %>
+
+                  </p>                  
+                  <p>作者：<a href="/u/<%= article.username %>"><%= article.username %></a></p>
+                  <p>日期：<%= article.date.minute %></p>
                   <%- article.body %>
                   <br>
                   <hr>
+
+                  <br />
+                  <% article.comments.forEach(function (comment, index) { %>
+                    <p><a href="<%= comment.website %>"><img class="media-object" src="<%= comment.head %>" alt=""><%= comment.name %></a>
+                    <span class="info"> 回复于 <%= comment.time.minute %></span></p>
+                    <p><%- comment.content %></p>
+                  <% }) %>
+
+                  <!-- Comments Form -->
+                  <div class="well">
+                      <h4>Leave a Comment:</h4>
+                      <!-- 
+                      <form role="form" action="/post" method="post">
+                          <div class="form-group">
+                              <textarea class="form-control" name="comment" rows="3"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                      -->
+
+                      <form method="post" action="/u/<%= article.username %>/<%= article.date.day %>/<%= article.title %>" role="form">
+                      <% if (user) { %>
+                        姓名：<input type="text" name="name" value="<%= user.name %>" /><br />
+                        邮箱：<input type="text" name="email" value="<%= user.email %>" /><br />
+                        网址：<input type="text" name="website" value="/u/<%= user.name %>" /><br />
+                      <% } else { %>
+                        姓名：<input type="text" name="name" /><br />
+                        邮箱：<input type="text" name="email" /><br />
+                        网址：<input type="text" name="website" value="http://" /><br />
+                      <% } %>
+                          <div class="form-group">
+                              <textarea class="form-control" name="content" rows="3"></textarea>
+                          </div>                      
+                        <!-- <textarea name="content" rows="5" cols="80"></textarea><br /> 
+                             <button type="submit" class="btn btn-primary">Submit</button>
+
+                        -->
+                        <input type="submit" value="留言" />
+                      </form>                    
+                  </div>
+
               <% }) %>
                 <div class="pagination-centered">
                   <ul class="pagination ">
@@ -60,18 +109,7 @@
                 <hr>
 
                 <!-- include comment -->
-                <!-- Blog Comments -->
-
-                <!-- Comments Form -->
-                <div class="well">
-                    <h4>Leave a Comment:</h4>
-                    <form role="form" action="/post" method="post">
-                        <div class="form-group">
-                            <textarea class="form-control" name="comment" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>                
+                <!-- Blog Comments -->                
 
             </div>
 

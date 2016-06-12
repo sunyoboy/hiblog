@@ -48,7 +48,24 @@ app.get('/signup', function(req, res, next) {
 
 app.post('/signup', user.signup);
 
+app.get('/logout', function(req, res, next) {
+  req.session.user = null;
+  req.flash('success', '登出成功！');
+  res.redirect('/');
+});
+
 app.get('/u/:name', post.getAll);
 app.get('/u/:name/:day/:title', post.findOne);
+app.post('/u/:name/:day/:title', post.postCommit);
+
+
+app.get('/edit/:name/:day/:title', post.checkLogin, post.editArticle);
+
+app.post('/edit/:name/:day/:title', post.updateArticle);
+
+app.get('/remove/:name/:day/:title', post.checkLogin, post.removeArticle);
+
+
+
 
 }
