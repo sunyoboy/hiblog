@@ -120,6 +120,58 @@ exports.display = function(req, res, next) {
     });
   });
 
+  var query = {};
+  var page = 0;
+  if (!req.query.page) {
+    page = 1;
+  } else {
+    page = req.query.page;
+  }
+  //使用 count 返回特定查询的文档数 total
+  //
+  // var query = BlogPost.find({});
+  // query.limit(2); //限制条数
+  // query.skip((page - 1) * 10) //开始数 ，通过计算可是实现分页  
+  // query.exec(function(err, docs) {
+  //   console.log(docs);
+  // });
+
+
+
+}
+
+exports.getTen = function(req, res, next) {
+  BlogPost.count({}, function(err, count) {
+    if (err) {
+      console.log(err);
+    }
+    console.log('there are %d jungle adventures', count);
+    var query = BlogPost.find({});
+    var page = 0;
+    if (!req.query.page) {
+      page = 1;
+    } else {
+      page = parseInt(req.query.page);
+    }
+    query.limit(2); //限制条数
+    query.skip((page - 1) * 2) //开始数 ，通过计算可是实现分页  
+    query.exec(function(err, posts) {
+      console.log('getTen posts ');
+      console.log(posts);
+      posts.forEach(function(doc) {
+        doc.body = markdown.toHTML(doc.body);
+      });
+      res.render('index', {
+        posts: posts,
+        user: req.session.user,
+        page: page,
+        isFirstPage: (page - 1) == 0,
+        isLastPage: ((page-1) * 2 + posts.length) == count
+      });
+    });
+  });
+
+
 }
 
 exports.getAll = function(req, res, next) {

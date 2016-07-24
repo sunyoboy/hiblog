@@ -1,10 +1,11 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+// var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config');
+var logger = config.getLogger('app');
 
 // added by sunlj
 var upload = require('./libs/upload');
@@ -23,26 +24,30 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 // save session in mongodb
 app.use(session({
-  secret: config.cookieSecret,
-  key: config.db, // cookie name
+  secret: config.mongodb.cookieSecret,
+  key: config.mongodb.db, // cookie name
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days 
   },
   store: new MongoStore({
     url: 'mongodb://localhost/blog'
-    // db: config.db,
-    // host: config.host,
-    // port: config.port
-  })
+      // db: config.db,
+      // host: config.host,
+      // port: config.port
+  }),
+  resave: false,
+  saveUninitialized: true
 }));
 
 routes(app);
@@ -84,6 +89,6 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 /*设置监听端口,同时设置回调函数，监听到事件时执行回调函数*/
-app.listen(app.get('port'), function afterListen(){
-        console.log('express running on the http://localhost:' + app.get('port'));
+app.listen(app.get('port'), function afterListen() {
+  console.log('express running on the http://localhost:' + app.get('port'));
 });

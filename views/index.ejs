@@ -92,8 +92,18 @@
               <% }) %>
                 <div class="pagination-centered">
                   <ul class="pagination ">
-                      <li><a class="previous disabled" href="#">Previous</a></li>
-                      <li><a href="#">Next</a></li>
+                  <!--
+                      <li><a class="previous disabled" href="javascript:;">Previous</a></li>
+                      <li><a href="javascript:;">Next</a></li>
+                      -->
+  <% if (!isFirstPage) { %>
+    <li><a class="previous" href="?page=<%= page - 1 %>">Previous</a></li>
+  <% } %>
+
+  <% if (!isLastPage) { %>
+    <li><a href="?page=<%= page + 1 %>">Next</a></li>
+  <% } %>
+                    
                   </ul>
                 </div>
                 <!-- Post Content 

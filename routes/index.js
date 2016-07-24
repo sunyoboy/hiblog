@@ -4,7 +4,7 @@ var user = require('../controllers/user');
 
 module.exports = function(app) {
 /* GET home page. */
-app.get('/', post.display);
+app.get('/', post.getTen);
 
 app.get('/plan', function(req, res, next) {
   res.render('plan', { title: 'Plan', user: req.session.user});
@@ -53,6 +53,8 @@ app.get('/logout', function(req, res, next) {
   req.flash('success', '登出成功！');
   res.redirect('/');
 });
+
+
 
 app.get('/u/:name', post.getAll);
 app.get('/u/:name/:day/:title', post.findOne);
